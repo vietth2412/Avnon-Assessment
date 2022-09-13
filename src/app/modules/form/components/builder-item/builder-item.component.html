@@ -1,0 +1,32 @@
+<div class="my-4">
+    <p class="fw-bold">
+        {{data.question}}
+    </p>
+    <div [ngSwitch]="data.type">
+        <div *ngSwitchCase="QUESTION_TYPE.Paragraph">
+            <textarea class="form-control" [(ngModel)]="data.paragraphAnswer"></textarea>
+        </div>
+        <div *ngSwitchCase="QUESTION_TYPE.Checkbox_List">
+            <div *ngFor="let item of data.answers;let i =index">
+                <div class="form-check">
+                    <input class="form-check-input" [(ngModel)]="item.checked" type="checkbox" id="{{data.id+'-'+i}}">
+                    <label class="form-check-label" for="{{data.id+'-'+i}}">
+                        {{item.title}}
+                    </label>
+                </div>
+            </div>
+            <div *ngIf="data.specifyAnswer">
+                <div class="form-check">
+                    <input class="form-check-input" [(ngModel)]="data.haveOtherAnswer" type="checkbox"
+                        id="{{data.id+'-other'}}">
+                    <label class="form-check-label" for="{{data.id+'-other'}}">
+                        Other
+                    </label>
+                </div>
+                <textarea *ngIf="data.haveOtherAnswer" [(ngModel)]="data.otherAnswer" class="form-control">
+
+                </textarea>
+            </div>
+        </div>
+    </div>
+</div>

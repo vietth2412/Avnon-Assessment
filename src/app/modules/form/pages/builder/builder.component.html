@@ -1,0 +1,16 @@
+<ng-container *ngFor="let question of questions">
+    <app-builder-item [data]="question"></app-builder-item>
+</ng-container>
+<ng-template #content let-modal>
+    <app-add-new-questions-modal (onCreateSuccess)="onCreateSuccess()"></app-add-new-questions-modal>
+</ng-template>
+
+
+<u (click)="openModalQuestion(content)" class="cursor-pointer"> Add New Question</u>
+<div class="row">
+    <div class="col">
+        <div class="text-end">
+            <button type="button" (click)="viewAnswer()" class="btn btn-outline-dark">Review my answers ></button>
+        </div>
+    </div>
+</div>
